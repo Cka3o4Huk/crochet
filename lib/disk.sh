@@ -1,3 +1,4 @@
+_MDCFG=${MDCONFIG:-mdconfig}
 # $1 - dir to unmount and delete
 disk_unmount_dir ( ) {
     echo "Unmounting $1"
@@ -8,7 +9,7 @@ disk_unmount_dir ( ) {
 # $1 - md to release
 disk_release_md ( ) {
     echo "Releasing $1"
-    mdconfig -d -u  $1 || true
+    ${_MDCFG} -d -u  $1 || true
 }
 
 _DISK_MDS=""  # List of MDs to clean up
@@ -45,7 +46,7 @@ disk_create_image ( ) {
     echo "    $1"
     [ -f $1 ] && rm -f $1
     dd if=/dev/zero of=$1 bs=512 seek=$(($2 / 512)) count=0 >/dev/null 2>&1
-    DISK_MD=`mdconfig -a -t vnode -f $1 -x 63 -y 255`
+    DISK_MD=`${_MDCFG} -a -t vnode -f $1 -x 63 -y 255`
     disk_record_md ${DISK_MD}
 }
 
