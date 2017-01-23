@@ -395,6 +395,8 @@ disk_ufs_create ( ) {
 
     NEW_UFS_DEVICE=/dev/${NEW_UFS_PARTITION}
 
+    sudo chmod 770 ${NEW_UFS_DEVICE}
+
     newfs ${NEW_UFS_DEVICE}
     # Turn on Softupdates
     tunefs -n enable ${NEW_UFS_DEVICE}
