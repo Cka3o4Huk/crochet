@@ -66,7 +66,7 @@ disk_partition_mbr ( ) {
 disk_prep_mountdir ( ) {
     if [ -d "$1" ]; then
         echo "   Removing already-existing mount directory."
-        umount $1 || true
+        sudo umount $1 || true
         if rmdir $1; then
             echo "   Removed pre-existing mount directory; creating new one."
         else
