@@ -348,6 +348,7 @@ disk_fat_mount ( ) {
     echo "Mounting FAT partition ${2:-1} at $1"
     disk_prep_mountdir $1
     sudo mount_msdosfs `disk_fat_device $2` $1
+    sudo chown `whoami` $1
     disk_record_mountdir $1
 }
 
@@ -435,6 +436,7 @@ disk_ufs_mount ( ) {
     echo "Mounting UFS partition ${2:-1} at $1"
     disk_prep_mountdir $1
     sudo mount `disk_ufs_device $2` $1 || exit 1
+    sudo chown `whoami` $1
     disk_record_mountdir $1
 }
 
