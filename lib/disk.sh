@@ -2,7 +2,7 @@ _MDCFG=${MDCONFIG:-mdconfig}
 # $1 - dir to unmount and delete
 disk_unmount_dir ( ) {
     echo "Unmounting $1"
-    umount $1 || true
+    sudo umount $1 || true
     rmdir $1 || true
 }
 
