@@ -330,6 +330,8 @@ disk_fat_create ( ) {
         esac
         echo "Default to FAT${_FAT_TYPE} for partition size $1"
     fi
+    
+    sudo chmod 770 ${NEW_FAT_DEVICE}
 
     if [ "${FAT_LABEL}" = "-" ]; then
         newfs_msdos -F ${_FAT_TYPE} ${NEW_FAT_DEVICE} >/dev/null
